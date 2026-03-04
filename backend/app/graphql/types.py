@@ -1,12 +1,13 @@
 import strawberry
+from typing import Optional
 
 @strawberry.type
 class ItemType:
     id: int
     name: str
     description:str
-    patch:float
+    patch:Optional[float]
     category:str
     tradeable:bool
     dyeable:bool
-    tags:str
+    tags: Optional[str]

@@ -1,5 +1,4 @@
 import httpx
-import asyncio
 import re
 
 async def load_patch_data():
@@ -18,9 +17,3 @@ async def load_patch_data():
             results[key]= float(re.sub(r'[^0-9.]','', patchRelations.get(str(value)).get("version")))
 
     return results
-
-
-
-
-if __name__ == "__main__":
-    print(asyncio.run(load_patch_data()).get('1'))

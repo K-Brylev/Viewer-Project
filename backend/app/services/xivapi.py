@@ -3,7 +3,7 @@ import json
 import asyncio
 import app.services.github as github
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.models import Item
+from app.database.models import Item
 
 XIVAPI_URL = "https://v2.xivapi.com/api/search"
 QUERY = "+(ItemSearchCategory.Name=\"Furnishings\" ItemSearchCategory.Name=\"Outdoor Furnishings\" ItemSearchCategory.Name=\"Tables\" ItemSearchCategory.Name=\"Tabletop\" ItemSearchCategory.Name=\"Chairs and Beds\" ItemSearchCategory.Name=\"Wall-mounted\" ItemSearchCategory.Name=\"Rugs\" ItemSearchCategory.Name=\"Paintings\")"
@@ -66,8 +66,3 @@ async def ingest_items(db:AsyncSession):
             await db.merge(new_item)
         await db.commit()
     return items
-        
-
-if __name__ == "__main__":
-    items = asyncio.run(fetch_items())
-    print(json.dumps(items, sort_keys=True, indent=4))
