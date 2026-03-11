@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database.models import Item
 
 XIVAPI_URL = "https://v2.xivapi.com/api/search"
-QUERY = "+(ItemSearchCategory.Name=\"Furnishings\" ItemSearchCategory.Name=\"Outdoor Furnishings\" ItemSearchCategory.Name=\"Tables\" ItemSearchCategory.Name=\"Tabletop\" ItemSearchCategory.Name=\"Chairs and Beds\" ItemSearchCategory.Name=\"Wall-mounted\" ItemSearchCategory.Name=\"Rugs\" ItemSearchCategory.Name=\"Paintings\")"
+QUERY = "+(ItemSearchCategory.Name=\"Furnishings\" ItemSearchCategory.Name=\"Outdoor Furnishings\" ItemSearchCategory.Name=\"Tables\" ItemSearchCategory.Name=\"Tabletop\" ItemSearchCategory.Name=\"Chairs and Beds\" ItemSearchCategory.Name=\"Wall-mounted\" ItemSearchCategory.Name=\"Rugs\" ItemSearchCategory.Name=\"Paintings\" ItemSearchCategory.Name=\"Interior Fixtures\" ItemSearchCategory.Name=\"Exterior Fixtures\")"
 
 FIELDS = "Name,Description,version,ItemSearchCategory.Name,Icon,IsUntradable,DyeCount"
 
@@ -57,7 +57,7 @@ async def ingest_items(db:AsyncSession):
                 patch=patch,
                 category=fields.get("ItemSearchCategory").get("fields").get("Name"),
                 icon=fields.get("Icon", {}).get("path_hr1"),
-                tradable=not fields.get("IsUntradable", False),
+                tradeable=not fields.get("IsUntradable", False),
                 dyeable=fields.get("DyeCount", 0) > 0,
                 tags=""
             )

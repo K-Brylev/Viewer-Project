@@ -14,7 +14,7 @@ class Item(Base):
     patch: Mapped[Optional[float | None]] = mapped_column(Float)
     category: Mapped[str] = mapped_column(String)
     icon: Mapped[str] = mapped_column(String)
-    tradable: Mapped[bool] = mapped_column(Boolean)
+    tradeable: Mapped[bool] = mapped_column(Boolean)
     dyeable: Mapped[bool] = mapped_column(Boolean)
     tags: Mapped[str | None] = mapped_column(String)
     search_vector : Mapped[str] = mapped_column(
@@ -28,6 +28,6 @@ class Item(Base):
     )
 
     def __str__(self):
-        return f"Item(id:{self.id},name:{self.name},description:{self.description},patch:{self.patch},category:{self.category},tradable:{self.tradable},dyeable:{self.dyeable},tags:{self.tags})"
+        return f"Item(id:{self.id},name:{self.name},description:{self.description},patch:{self.patch},category:{self.category},tradable:{self.tradeable},dyeable:{self.dyeable},tags:{self.tags})"
     def __repr__(self):
-        return f"Item(id:{self.id},name:{self.name},description:{self.description},patch:{self.patch},category:{self.category},icon:{self.icon},tradable:{self.tradable},dyeable:{self.dyeable},tags:{self.tags})"
+        return f"Item(id:{self.id},name:{self.name},description:{self.description},patch:{self.patch},category:{self.category},icon:{self.icon},tradable:{self.tradeable},dyeable:{self.dyeable},tags:{self.tags})"

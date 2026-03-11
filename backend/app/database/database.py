@@ -15,6 +15,8 @@ async def get_db():
 
 async def init_db():
     async with engine.begin() as conn:
+        await conn.execute(text("DROP TABLE IF EXISTS items CASCADE"))
+
         await conn.run_sync(Base.metadata.create_all)
 
         await conn.execute(text("ALTER TABLE items DROP COLUMN IF EXISTS search_vector;"))
