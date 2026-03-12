@@ -7,6 +7,7 @@ class ItemType:
     id: int
     name: str
     description:str
+    icon:str
     patch:Optional[float]
     category:str
     sub_category:str
@@ -15,16 +16,19 @@ class ItemType:
     dyeable:bool
     tags: Optional[str]
 
+@strawberry.type
+class ItemPage:
+    has_more: bool
+    items: List[ItemType]
+
 @strawberry.enum
 class ItemCategory(Enum):
-    TABLE = "Tables"
-    OTDRFURN = "Outdoor Furnishings"
+    TABLE = "Table"
+    OTDRFURN = "Outdoor Furnishing"
     TABLETOP = "Tabletop"
-    RUG = "Rugs"
+    RUG = "Rug"
     WALLMNTD = "Wall-mounted"
-    CHAIRBED = "Chairs and Beds"
-    PAINTING = "Paintings"
-    FURNISHING = "Furnishings"
+    FURNISHING = "Furnishing"
     INTRFIX = "Interior Fixtures"
     EXTRFIX = "Exterior Fixtures"
 
