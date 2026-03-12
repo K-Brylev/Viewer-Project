@@ -26,7 +26,9 @@ async def init_db():
         ADD COLUMN search_vector tsvector GENERATED ALWAYS AS (
             setweight(to_tsvector('english', coalesce(name,'')), 'A') ||
             setweight(to_tsvector('english', coalesce(description,'')), 'B') ||
-            setweight(to_tsvector('english', coalesce(tags,'')), 'C')
+            setweight(to_tsvector('english', coalesce(tags,'')), 'C') ||
+            setweight(to_tsvector('english', coalesce(category,'')), 'D') ||
+            setweight(to_tsvector('english', coalesce(sub_category,'')), 'D')
         ) STORED;
         """))
 

@@ -1,6 +1,6 @@
-from typing import List, Optional, Dict
+from typing import List, Optional
 from strawberry.types import Info
-from sqlalchemy import select, func, or_
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.database.models import Item
 from app.graphql.types import ItemType, ItemFilter
@@ -22,6 +22,8 @@ async def resolve_items(info: Info, filter: Optional[ItemFilter] = None, limit: 
             ).order_by(rank.desc())
         if filter.categories:
             query = query.where(Item.category.in_([c.value for c in filter.categories]))
+        if filter.outdoor is not None:
+            query = query.where(Item.outdoor == filter.outdoor)
         if filter.tradeable is not None:
             query = query.where(Item.tradeable == filter.tradeable)
         if filter.dyeable is not None:

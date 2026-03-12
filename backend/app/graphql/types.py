@@ -9,6 +9,8 @@ class ItemType:
     description:str
     patch:Optional[float]
     category:str
+    sub_category:str
+    outdoor:bool
     tradeable:bool
     dyeable:bool
     tags: Optional[str]
@@ -30,5 +32,6 @@ class ItemCategory(Enum):
 class ItemFilter:
     search: Optional[str] = None
     categories: Optional[List[ItemCategory]] = None
+    outdoor: Optional[bool] = None
     tradeable: Optional[bool] = None
     dyeable: Optional[bool] = None
